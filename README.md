@@ -76,31 +76,31 @@ select red color in hue range with trackbar:
 - Erosi and dilasi
 
 >cvErode(chan3, chan3, 0, 9);
-        cvDilate(chan3, chan3, 0, 9);
+>cvDilate(chan3, chan3, 0, 9);
 
 ![erosi_dilasi](gambar/erosi_dilasi.png  "erosi_dilasi")
 
 - Count center of object
 
 >cvMoments(chan3, &moments, 1);
-        int                 r = sqrt(moments.m00); 
-        int                 x = moments.m10/moments.m00;
-        int                 y = moments.m01/moments.m00;
+>int                 r = sqrt(moments.m00); 
+>int                 x = moments.m10/moments.m00;
+>int                 y = moments.m01/moments.m00;
 
 - Draw Circle in center of object
 
 > if (x > 0 && y > 0)
-        {
-            cvCircle(monitor, cvPoint(x, y), r, cvScalar(0, 0, 0), 4, CV_AA, 0); //lingkaran outline
-            cvCircle(monitor, cvPoint(x, y), r, cvScalar(255, 255, 255), 2, CV_AA, 0); //lingkaran fill in
-        }
+> {
+>   cvCircle(monitor, cvPoint(x, y), r, cvScalar(0, 0, 0), 4, CV_AA, 0); //lingkaran outline
+>   cvCircle(monitor, cvPoint(x, y), r, cvScalar(255, 255, 255), 2, CV_AA, 0); //lingkaran fill in
+> }
 
 ![target](gambar/target_cyrcle.png  "target")
 
 - draw line to target area
 
 > cvLine(result, cvPoint(target - 60, 0), cvPoint(target - 60, 480), cvScalar(255, 0, 0), 2);
-        cvLine(result, cvPoint(target, 0), cvPoint(target, 480), cvScalar(0, 0, 255), 3);
-        cvLine(result, cvPoint(target + 60, 0), cvPoint(target + 60, 480), cvScalar(255, 0, 0), 2);
+> cvLine(result, cvPoint(target, 0), cvPoint(target, 480), cvScalar(0, 0, 255), 3);
+> cvLine(result, cvPoint(target + 60, 0), cvPoint(target + 60, 480), cvScalar(255, 0, 0), 2);
 
 ![area](gambar/target_cyrcle_area.png  "area")
