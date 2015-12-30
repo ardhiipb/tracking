@@ -42,25 +42,31 @@ select red color in hue range with trackbar:
 
 ## How it's work
 - record video from camere (index 0)
+
 > CvCapture* capture = cvCreateCameraCapture(0);
 - process each frame
+
 > IplImage* frame = cvQueryFrame(capture);
 
 ![Frame](gambar/frame_original.png  "Frame")
 
 - flip frame image right-left
+
 > cvFlip(frame, frame,1);
 
 ![Frame Flip](gambar/frame_flip.png  "Frame Flip")
 
 - Convert RGB to HSV
+
 > cvCvtColor(frame, hsv, CV_BGR2HSV);
 - Split HSV (3 channel)
+
 > cvSplit(hsv, chan_hue, chan_sat, chan_val, 0);
 
 ![Frame Flip](gambar/hsv.jpg  "Frame Flip")!
 
 - add frame hue and saturation
+
 > cvAnd(chan_hue, chan_sat, chan3);
 
 ![add](gambar/add_hue_saturation.png  "add")
