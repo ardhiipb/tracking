@@ -10,6 +10,7 @@
 ![Sistem](gambar/ "Gambar 2. Sistem")
 
 2. connect servo to vvc, gnd, digitalpin(7) on arduino port
+
 ![Servo](gambar/servo.png "Gambar 2. Configurasi Pin Servo")
 
 ## built "tracking-arduino.cc" to your arduino
