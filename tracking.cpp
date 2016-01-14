@@ -82,7 +82,7 @@ void buattrackbar()
 
 int main()
 {
-    CvCapture*          capture = cvCreateCameraCapture(0);
+    CvCapture*          capture = cvCreateCameraCapture(1);
     if (capture == 0)
     {
         std::cerr << "Failed to open the camera.\n";
@@ -167,8 +167,9 @@ int main()
         cvShowImage("Value", chan_val); // show value to window RGB
 
         cvAnd(chan_hue, chan_sat, chan3); // Merge masks
-        cvErode(chan3, chan3, 0, 9); // Suppress noise
+        cvErode(chan3, chan3, 0, 1); // Suppress noise
         cvDilate(chan3, chan3, 0, 9); // scale object
+        //cvErode(chan3, chan3, 0,)
 
         // Find the position (moment) of the selected regions.
         CvMoments           moments;
@@ -198,6 +199,21 @@ int main()
         cvLine(result, cvPoint(target - 60, 0), cvPoint(target - 60, 480), cvScalar(255, 0, 0), 2);
         cvLine(result, cvPoint(target, 0), cvPoint(target, 480), cvScalar(0, 0, 255), 3);
         cvLine(result, cvPoint(target + 60, 0), cvPoint(target + 60, 480), cvScalar(255, 0, 0), 2);
+
+        CvPoint pt1((x), (y));
+        CvPoint pt2((x), (y));
+        cvRectangle(result, pt1, pt2, cvScalar(255,0,0),7,0);
+        cv::Mat framemat = cv::cvarrToMat(frame);
+//        cv::Rect myROI(10,10,100,100);
+//        //cv::Mat cropRef(framemat, myROI);
+//        //imshow(myROI);
+//        cv::Rect roi(10,10,100,100);
+//        cv::Mat image_roi = image(roi);
+//        image_roi.copyTo(cropimage);
+//        imshow(cropimage);
+        //cv::Mat cropedImage;// = cv::Rect rrrr(10,10,100,100);
+        //imshow(cropedImage);
+        //cvGetRectSubPix(framemat,cropedImage,)
         if (x > 0 && y > 0)
         {
             cvCircle(result, cvPoint(x, y), 10, cvScalar(0, 0, 0), 6, CV_AA, 0);
@@ -291,7 +307,7 @@ int main()
         else if (angle > 2000)
             angle = 2000;
 
-        printf("pos = %d, P = %f, I = %f, D = %f, angle = %f, dt = %f\n", x, p, i, d, angle, dt);
+        //printf("pos = %d, P = %f, I = %f, D = %f, angle = %f, dt = %f\n", x, p, i, d, angle, dt);
 
         //-------- Send the position to Arduino --------
 
